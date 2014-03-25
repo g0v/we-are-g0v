@@ -1,7 +1,7 @@
 app = angular.module 'we-are-g0v', <[]>
 
 base-img = new Image!
-base-img.src = '/g0v1.png'
+base-img.src = 'g0v1.png'
 
 base-img.onload = ->
   input-area = document.get-element-by-id 'cover-name'
