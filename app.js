@@ -2,7 +2,7 @@
   var app, baseImg, dataURLtoBlob;
   app = angular.module('we-are-g0v', []);
   baseImg = new Image();
-  baseImg.src = '/g0v1.png';
+  baseImg.src = 'g0v1.png';
   baseImg.onload = function(){
     var inputArea;
     inputArea = document.getElementById('cover-name');
