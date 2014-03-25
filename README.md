@@ -9,9 +9,9 @@ require nodejs
 1. `npm install`
 2. `npm run dev`
 
-# Contribute
+# Contribution
 
-just fork it!
+just fork it and start to code!
 
 # License
 
