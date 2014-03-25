@@ -23,7 +23,8 @@ app.controller 'coverCtrl' <[$scope $window]> ++ ($scope, $window) ->
   $scope.is-done =  false
 
   $scope.generate = ->
-    console.log $scope.name.length
+    $ '#result' .hide!
+    return $scope.message = '需要小於8個字元長' if $scope.name.length > 8
     canvas = new fabric.StaticCanvas 'c'
     img-instance = new fabric.Image base-img, do
       scale: 0.5

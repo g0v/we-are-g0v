@@ -20,6 +20,8 @@ html(ng-app="we-are-g0v")
         .field
           label 名字 
           input(ng-model="name", placeholder="請輸入名字")
+        .field
+          .message(ng-show="message",style="color: red") {{message}}
         a.ui.blue.tiny.button(href="#", ng-click='generate()') 產生
       canvas#c(width="1502", height="565", style="display: none;")
       img#result(style="display: none")
