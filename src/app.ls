@@ -7,17 +7,6 @@ base-img.onload = ->
   input-area = document.get-element-by-id 'cover-name'
   input-area.style.display = 'block'
 
-dataURLtoBlob = (dataURL) ->
-  byteString = atob dataURL.split(',').1
-  mimeString = dataURL.split(',').0.split(':').1.split(';').0
-  ab = new ArrayBuffer byteString.length
-  ia = new Uint8Array ab
-  for i from 0 to byteString.length by 1
-    ia.i = byteString.charCodeAt i
-  bb = new BlobBuilder!
-  bb.append ab
-  bb.getBlob mimeString
-
 app.controller 'coverCtrl' <[$scope $window]> ++ ($scope, $window) ->
 
   $scope.is-done =  false
