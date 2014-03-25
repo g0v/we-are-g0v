@@ -1,5 +1,5 @@
 (function(){
-  var app, baseImg;
+  var app, baseImg, paddPsace;
   app = angular.module('we-are-g0v', []);
   baseImg = new Image();
   baseImg.src = 'g0v1.png';
@@ -8,31 +8,47 @@
     inputArea = document.getElementById('cover-name');
     return inputArea.style.display = 'block';
   };
+  paddPsace = function(it){
+    if (it.length >= 7) {
+      return it;
+    }
+    return paddPsace('　' + it);
+  };
   app.controller('coverCtrl', ['$scope', '$window'].concat(function($scope, $window){
     $scope.isDone = false;
-    return $scope.generate = function(){
-      var canvas, imgInstance, text, img;
-      $('#result').hide();
-      if ($scope.name.length > 8) {
-        return $scope.message = '需要小於8個字元長';
-      }
+    $scope.generate = function(){
+      var result, img, canvas, imgInstance, name, offset, text, dataURI;
+      result = $('#result').hide();
+      img = $('#result img');
+      $scope.isDone = false;
       canvas = new fabric.StaticCanvas('c');
       imgInstance = new fabric.Image(baseImg, {
         scale: 0.5,
         opacity: 0.85
       });
-      text = new fabric.Text($scope.name, {
-        left: 900 - $scope.name.length,
+      if ($scope.name.match(/[a-zA-Z]/)) {
+        name = paddPsace($scope.name);
+        offset = 7 - name.length;
+      } else {
+        name = $scope.name;
+        offset = 0;
+      }
+      text = new fabric.Text(name, {
+        left: (900 + offset * 18) - name.length,
         top: 488,
         fill: '#666965'
       });
       canvas.add(imgInstance);
       canvas.add(text);
-      img = Canvas2Image.saveAsPNG(canvas, true);
-      img.id = 'result';
-      $(img).css('margin-top', '10px');
-      $('#result').replaceWith(img);
+      dataURI = canvas.toDataURL('png');
+      img.attr('src', dataURI);
+      img.attr('width', '100%');
+      $scope.blob = Util.dataURLToBlob(dataURI);
+      result.show();
       return $scope.isDone = true;
+    };
+    return $scope.download = function(){
+      return saveAs($scope.blob, 'cover.png');
     };
   }));
 }).call(this);
