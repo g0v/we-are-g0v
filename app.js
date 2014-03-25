@@ -26,7 +26,10 @@
     $scope.isDone = false;
     return $scope.generate = function(){
       var canvas, imgInstance, text, img;
-      console.log($scope.name.length);
+      $('#result').hide();
+      if ($scope.name.length > 8) {
+        return $scope.message = '需要小於8個字元長';
+      }
       canvas = new fabric.StaticCanvas('c');
       imgInstance = new fabric.Image(baseImg, {
         scale: 0.5,
