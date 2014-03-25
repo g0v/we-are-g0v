@@ -28,7 +28,7 @@ app.controller 'coverCtrl' <[$scope $window]> ++ ($scope, $window) ->
       offset = 7 - name.length
     else 
       name = $scope.name
-      offset = 0
+      offset = 3 - name.length
     
     text = new fabric.Text name, do
       left: (900 + offset*18) - name.length
