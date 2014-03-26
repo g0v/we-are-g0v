@@ -1,4 +1,4 @@
-require! <[gulp gulp-util express connect-livereload gulp-jade tiny-lr gulp-livereload path gulp-livescript]>
+require! <[gulp gulp-util express connect-livereload gulp-jade tiny-lr gulp-livereload path gulp-livescript gulp-ruby-sass]>
 
 app = express!
 lr = tiny-lr!
@@ -12,6 +12,12 @@ gulp.task 'html', ->
 gulp.task 'js', ->
   gulp.src 'src/*.ls'
     .pipe gulp-livescript!
+    .pipe gulp.dest '_public'
+    .pipe gulp-livereload lr
+
+gulp.task 'css', ->
+  gulp.src 'src/*.sass'
+    .pipe gulp-ruby-sass!
     .pipe gulp.dest '_public'
     .pipe gulp-livereload lr
 
@@ -31,8 +37,9 @@ gulp.task 'watch', ->
     return gulp-util.log it if it
   gulp.watch 'src/**/*.jade', <[html]>
   gulp.watch 'src/**/*.png', <[assets]>
+  gulp.watch 'src/**/*.sass', <[css]>
   gulp.watch 'src/**/*.ls', <[js]>
 
-gulp.task 'build', <[html js assets]>
+gulp.task 'build', <[html js assets css]>
 gulp.task 'dev', <[build server watch]>
 gulp.task 'default', <[build]>

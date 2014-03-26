@@ -8,7 +8,7 @@
     "build": "gulp --require LiveScript",
     "dev": "gulp --require LiveScript dev"
   },
- "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/g0v/we-are-g0v"
   },
@@ -26,7 +26,8 @@
     "gulp": "~3.5.6",
     "express": "~3.5.0",
     "gulp-jade": "~0.4.2",
-    "gulp-livescript": "~0.2.1"
+    "gulp-livescript": "~0.2.1",
+    "gulp-ruby-sass": "~0.4.0"
   },
   "dependencies": {
     "LiveScript": "~1.2.0"
